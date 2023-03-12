@@ -4,21 +4,30 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "books")
 public class Book  {
 
-    public static final String TAG = Book.class.getSimpleName();
-
-
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "bookId")
+    private long id;
+    @ColumnInfo(name = "bookTitle")
     private String title;
+    @ColumnInfo(name = "bookAuthors")
     private String authors;
+    @ColumnInfo(name = "bookYear")
     private String year; // publication year
+    @ColumnInfo(name = "bookGenres")
     private String genres;
+    @ColumnInfo(name = "bookPublisher")
     private String publisher;
 
     public Book(String title, String authors, String year, String genres, String publisher) {
+        this.id = id;
         this.title = title;
         this.authors = authors;
         this.year = year;
@@ -80,4 +89,12 @@ public class Book  {
             new Book("Astérix chez les Bretons", "R. Goscinny et A. Uderzo", "1967", "BD aventure", "Hachette"),
             new Book("Monster", "N. Urasawa", "1994-2001", "manga policier", "Kana Eds"),
             new Book("V pour Vendetta", "A. Moore et D. Lloyd", "1982-1990", "comics", "Hachette")};
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
